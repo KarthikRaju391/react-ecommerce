@@ -12,6 +12,7 @@ app.use(cors());
 
 const CONNECTION_URL = 'mongodb+srv://ecom123:ecommerce123@ecommerce.d3pe6.mongodb.net/ecommerce?retryWrites=true&w=majority'
 
-mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose
+    .connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, () => console.log(`Server running on: http://localhost:${PORT}`))    )
     .catch((error) => console.log(error.message));
