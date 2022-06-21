@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 1000;
 `;
 
 const Form = styled.form`

@@ -2,21 +2,21 @@ export const sliderItems = [
     {
       id: 1,
       img: "https://lilacinfotech.com/lilac_assets/images/blog/What-Is-E-commerce-and-what-are-its-Applications.jpg",
-      title: "SUMMER SALE",
+      title: "BRANDS",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "f5fafd",
     },
     {
       id: 2,
-      img: "https://i.ibb.co/DG69bQ4/2.png",
-      title: "AUTUMN COLLECTION",
+      img: "https://img.freepik.com/free-photo/portrait-retro-1920s-english-arabian-business-man-wearing-dark-suit-tie-flat-cap-near-old-columns_151355-8589.jpg?w=2000",
+      title: "KARTHYAV MONTH",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "fcf1ed",
     },
     {
       id: 3,
-      img: "https://i.ibb.co/cXFnLLV/3.png",
-      title: "LOUNGEWEAR LOVE",
+      img: "https://etimg.etb2bimg.com/photo/75177098.cms",
+      title: "BEST DEALS",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "fbf0f4",
     },
@@ -25,20 +25,20 @@ export const sliderItems = [
   export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "https://cdn.shopify.com/s/files/1/2360/8505/products/Shirt-Style-T-Shirt-In-Navy-Blue_860x.jpg?v=1559847776",
       title: "SHIRT STYLE!",
       cat:"women"
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "LOUNGEWEAR LOVE",
+      img: "https://img.mensxp.com/media/content/2020/Aug/Easy-To-Follow-Tips-To-Wear-A-Denim-Jacket-Like-A-Big-Shot-Celebrity-500-2_5f2d458334ee7.jpeg",
+      title: "DENIM JACKETS",
       cat:"coat"
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "LIGHT JACKETS",
+      img: "https://cdn.shopify.com/s/files/1/1025/3059/products/NAVY_BLUE_SUIT__075_0ba78598-6c22-4024-820e-019a5fdb109a_830x1230_crop_center.jpg?v=1643118883",
+      title: "SUITS",
       cat:"jeans"
     },
   ];
