@@ -11,7 +11,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url("https://www.logisticsinsider.in/wp-content/uploads/2020/10/ecomm.jpg")
       center;
   background-size: cover;
   display: flex;
@@ -22,7 +22,6 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
-  background-color: white;
   ${mobile({ width: "75%" })}
 `;
 
@@ -41,6 +40,8 @@ const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  border-width : 5px;
+  border-radius : 15px;
 `;
 
 const Agreement = styled.span`
@@ -55,7 +56,9 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
-`;
+  border-width : 5px;
+  border-radius : 15px;
+  `;
 
 const Error = styled.p`
   color: red;
