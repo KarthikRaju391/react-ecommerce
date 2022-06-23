@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { register } from "../redux/apiCalls";
 
 const Container = styled.div`
   width: 100vw;
@@ -54,23 +57,78 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Error = styled.p`
+  color: red;
+`;
+
 const Register = () => {
+  const dispatch = useDispatch();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState({ emailError: false, passwordError: false })
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setError({...error, passwordError: true })
+    } else if (!(email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    ))) {
+      setError({...error, emailError: true})
+    } else {
+      console.log("success")
+      register(dispatch, {
+        username,
+        email,
+        password,
+      })
+    }
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+          <Input
+            placeholder="name"
+            type="text"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <Input
+            placeholder="last name"
+            type="text"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <Input
+            placeholder="username"
+            type="text"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            placeholder="example@gmail.com"
+            type="email"
+            onChange={(e) => setEmail(e.target.value.toLowerCase())}
+          />
+          <Input
+            placeholder="password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Input
+            placeholder="confirm password"
+            type="password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleClick}>CREATE</Button>
+          {(error.emailError || error.passwordError) && <Error>Please check your email or password...</Error>}
         </Form>
       </Wrapper>
     </Container>

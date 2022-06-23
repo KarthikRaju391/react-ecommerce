@@ -6,10 +6,20 @@ import {
   PhoneAndroid,
   Publish,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./user.css";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { userRequest } from "../../requestMethods";
 
 export default function User() {
+  const location = useLocation();
+  const userId = location.pathname.split('/')[2]
+
+  const user = useSelector((state) => 
+    state.users.users.find((user) => user._id === userId)
+  );
+
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -27,33 +37,33 @@ export default function User() {
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">Anna Becker</span>
-              <span className="userShowUserTitle">Software Engineer</span>
+              <span className="userShowUsername">{user.name}</span>
+              {/* <span className="userShowUserTitle">Software Engineer</span> */}
             </div>
           </div>
           <div className="userShowBottom">
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99</span>
+              <span className="userShowInfoTitle">{(user.email).split('@')[0]}</span>
             </div>
-            <div className="userShowInfo">
+            {/* <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
               <span className="userShowInfoTitle">10.12.1999</span>
-            </div>
+            </div> */}
             <span className="userShowTitle">Contact Details</span>
-            <div className="userShowInfo">
+            {/* <div className="userShowInfo">
               <PhoneAndroid className="userShowIcon" />
               <span className="userShowInfoTitle">+1 123 456 67</span>
-            </div>
+            </div> */}
             <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99@gmail.com</span>
+              <span className="userShowInfoTitle">{user.email}</span>
             </div>
-            <div className="userShowInfo">
+            {/* <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
               <span className="userShowInfoTitle">New York | USA</span>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="userUpdate">
