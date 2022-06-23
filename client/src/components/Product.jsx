@@ -4,6 +4,8 @@ import {
   ShoppingCartOutlined,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { addToWishlist, addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const Info = styled.div`
@@ -23,7 +25,7 @@ const Info = styled.div`
 `;
 
 const Container = styled.div`
-  flex: 1;
+  flex: 0 0 32.3333%;
   margin: 5px;
   min-width: 280px;
   height: 350px;
@@ -68,21 +70,30 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(addToWishlist())
+  }
+
+  const handleCartClick = () => {
+    dispatch(addProduct({...item}))
+  }
+
   return (
     <Container>
       <Circle />
       <Image src={item.img} />
       <Info>
         <Icon>
-          <ShoppingCartOutlined />
+          <ShoppingCartOutlined onClick={handleCartClick} />
         </Icon>
         <Icon>
           <Link to={`/product/${item._id}`}>
-          <SearchOutlined />
+            <SearchOutlined />
           </Link>
         </Icon>
         <Icon>
-          <FavoriteBorderOutlined />
+          <FavoriteBorderOutlined onClick={handleClick} />
         </Icon>
       </Info>
     </Container>
