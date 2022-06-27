@@ -1,8 +1,9 @@
-import styled from "styled-components";
-import { mobile } from "../responsive";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { register } from "../redux/apiCalls";
+import styled from 'styled-components';
+import { mobile } from '../responsive';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { register } from '../redux/apiCalls';
+import CryptoJS from 'crypto-js';
 
 const Container = styled.div`
   width: 100vw;
@@ -11,7 +12,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url('https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
       center;
   background-size: cover;
   display: flex;
@@ -23,7 +24,7 @@ const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
   background-color: white;
-  ${mobile({ width: "75%" })}
+  ${mobile({ width: '75%' })}
 `;
 
 const Title = styled.h1`
@@ -66,27 +67,33 @@ const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState({ emailError: false, passwordError: false })
+  const [error, setError] = useState({
+    emailError: false,
+    passwordError: false,
+  });
 
   const handleClick = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setError({...error, passwordError: true })
-    } else if (!(email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    ))) {
-      setError({...error, emailError: true})
+      setError({ ...error, passwordError: true });
+    } else if (
+      !email.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      setError({ ...error, emailError: true });
     } else {
-      console.log("success")
+      console.log('success');
       register(dispatch, {
         username,
         email,
         password,
-      })
+      });
     }
-  }
+  };
 
   return (
     <Container>
@@ -128,7 +135,9 @@ const Register = () => {
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
           <Button onClick={handleClick}>CREATE</Button>
-          {(error.emailError || error.passwordError) && <Error>Please check your email or password...</Error>}
+          {(error.emailError || error.passwordError) && (
+            <Error>Please check your email or password...</Error>
+          )}
         </Form>
       </Wrapper>
     </Container>

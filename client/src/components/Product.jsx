@@ -2,11 +2,11 @@ import {
   FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
-} from "@material-ui/icons";
-import { Link } from "react-router-dom";
-import { addToWishlist, addProduct } from "../redux/cartRedux";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
+} from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import { addToWishlist, addProduct } from '../redux/cartRedux';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
 const Info = styled.div`
   opacity: 0;
@@ -35,7 +35,7 @@ const Container = styled.div`
   background-color: #f5fbfd;
   position: relative;
 
-  &:hover ${Info}{
+  &:hover ${Info} {
     opacity: 1;
   }
 `;
@@ -72,12 +72,12 @@ const Icon = styled.div`
 const Product = ({ item }) => {
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(addToWishlist())
-  }
+    dispatch(addToWishlist());
+  };
 
   const handleCartClick = () => {
-    dispatch(addProduct({...item}))
-  }
+    dispatch(addProduct({ ...item }));
+  };
 
   return (
     <Container>

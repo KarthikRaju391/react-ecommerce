@@ -5,20 +5,39 @@ import {
   PermIdentity,
   PhoneAndroid,
   Publish,
-} from "@material-ui/icons";
-import { Link, useLocation } from "react-router-dom";
-import "./user.css";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { userRequest } from "../../requestMethods";
+} from '@material-ui/icons';
+import { Link, useLocation } from 'react-router-dom';
+import './user.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { updateUser } from '../../redux/apiCalls';
 
 export default function User() {
   const location = useLocation();
-  const userId = location.pathname.split('/')[2]
-
-  const user = useSelector((state) => 
+  const userId = location.pathname.split('/')[2];
+  const dispatch = useDispatch();
+  const user = useSelector((state) =>
     state.users.users.find((user) => user._id === userId)
   );
+
+  const [admin, setAdmin] = useState(user.isAdmin);
+  const [username, setUsername] = useState(user.username);
+  const [email, setEmail] = useState(user.email);
+  console.log(admin);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    updateUser(
+      userId,
+      {
+        ...user,
+        username,
+        email,
+        isAdmin: admin,
+      },
+      dispatch
+    );
+  };
 
   return (
     <div className="user">
@@ -36,16 +55,15 @@ export default function User() {
               alt=""
               className="userShowImg"
             />
-            <div className="userShowTopTitle">
-              <span className="userShowUsername">{user.name}</span>
-              {/* <span className="userShowUserTitle">Software Engineer</span> */}
-            </div>
           </div>
           <div className="userShowBottom">
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">{(user.email).split('@')[0]}</span>
+              <span className="userShowInfoTitle">
+                {user.username}
+                {user.isAdmin && ' (admin)'}
+              </span>
             </div>
             {/* <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
@@ -74,56 +92,39 @@ export default function User() {
                 <label>Username</label>
                 <input
                   type="text"
-                  placeholder="annabeck99"
+                  placeholder={user.username}
                   className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  placeholder="Anna Becker"
-                  className="userUpdateInput"
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Email</label>
                 <input
                   type="text"
-                  placeholder="annabeck99@gmail.com"
+                  placeholder={user.email}
                   className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Phone</label>
-                <input
-                  type="text"
-                  placeholder="+1 123 456 67"
-                  className="userUpdateInput"
-                />
-              </div>
-              <div className="userUpdateItem">
-                <label>Address</label>
-                <input
-                  type="text"
-                  placeholder="New York | USA"
-                  className="userUpdateInput"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
+            <div className="userAdminChoice">
+              <label>Admin</label>
+              {user.isAdmin ? (
+                <select onChange={(e) => setAdmin(e.target.value)}>
+                  <option defaultValue={user.isAdmin}>true</option>
+                  <option value="false">false</option>
+                </select>
+              ) : (
+                <select onChange={(e) => setAdmin(e.target.value)}>
+                  <option defaultValue={user.isAdmin}>false</option>
+                  <option value="true">true</option>
+                </select>
+              )}
+            </div>
             <div className="userUpdateRight">
-              <div className="userUpdateUpload">
-                <img
-                  className="userUpdateImg"
-                  src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                  alt=""
-                />
-                <label htmlFor="file">
-                  <Publish className="userUpdateIcon" />
-                </label>
-                <input type="file" id="file" style={{ display: "none" }} />
-              </div>
-              <button className="userUpdateButton">Update</button>
+              <button onClick={handleClick} className="userUpdateButton">
+                Update
+              </button>
             </div>
           </form>
         </div>
