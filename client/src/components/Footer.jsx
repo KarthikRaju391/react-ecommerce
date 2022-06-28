@@ -88,11 +88,7 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-<<<<<<< HEAD
         <Logo>KARTHYAV</Logo>
-=======
-        <Logo>LAMA.</Logo>
->>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
         <Desc>
           There are many variations of passages of Lorem Ipsum available, but
           the majority have suffered alteration in some form, by injected
