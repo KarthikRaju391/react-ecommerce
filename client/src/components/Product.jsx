@@ -84,8 +84,7 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
-<<<<<<< HEAD
-=======
+
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(addToWishlist());
@@ -95,14 +94,12 @@ const Product = ({ item }) => {
     dispatch(addProduct({ ...item }));
   };
 
->>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
   return (
     <Container>
       <Circle />
       <Image src={item.img} />
       <Info>
         <Icon>
-<<<<<<< HEAD
           <ShoppingCartOutlined />
         </Icon>
         <Icon>
@@ -112,7 +109,6 @@ const Product = ({ item }) => {
         </Icon>
         <Icon>
           <FavoriteBorderOutlined />
-=======
           <ShoppingCartOutlined onClick={handleCartClick} />
         </Icon>
         <Icon>
@@ -122,7 +118,6 @@ const Product = ({ item }) => {
         </Icon>
         <Icon>
           <FavoriteBorderOutlined onClick={handleClick} />
->>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
         </Icon>
       </Info>
     </Container>
