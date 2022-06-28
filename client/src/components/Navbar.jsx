@@ -91,7 +91,11 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
+<<<<<<< HEAD
           <Logo>KARTHYAV</Logo>
+=======
+          <Logo>LAMA.</Logo>
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
         </Center>
         <Right>
           {!user && <MenuItem>

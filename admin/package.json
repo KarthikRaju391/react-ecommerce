@@ -1,16 +1,35 @@
 {
+<<<<<<< HEAD
+<<<<<<< HEAD:admin/package.json
+=======
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
   "name": "lamaadmin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/data-grid": "^4.0.0-alpha.29",
+<<<<<<< HEAD
+=======
+  "name": "new",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+
+    "@material-ui/core": "^4.12.3",
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7:client/package.json
+=======
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
     "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.4",
+<<<<<<< HEAD
+<<<<<<< HEAD:admin/package.json
+=======
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
     "firebase": "^9.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -20,6 +39,27 @@
     "recharts": "^2.0.9",
     "redux-persist": "^6.0.0",
     "timeago.js": "^4.0.2",
+<<<<<<< HEAD
+=======
+
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.17.1",
+    "axios": "^0.21.1",
+
+    "crypto-js": "^4.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "react-stripe-checkout": "^2.6.3",
+    "redux-persist": "^6.0.0",
+    "styled-components": "^5.3.1",
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7:client/package.json
+=======
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
     "web-vitals": "^1.0.1"
   },
   "scripts": {

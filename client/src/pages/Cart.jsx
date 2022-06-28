@@ -191,8 +191,13 @@ const Cart = () => {
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
+<<<<<<< HEAD
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
+=======
+            <TopText>Shopping Bag({cart.quantity})</TopText>
+            <TopText>Your Wishlist ({cart.wishlist})</TopText>
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>

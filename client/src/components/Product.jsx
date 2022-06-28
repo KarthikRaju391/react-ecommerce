@@ -2,9 +2,17 @@ import {
   FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
+<<<<<<< HEAD
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+=======
+} from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import { addToWishlist, addProduct } from '../redux/cartRedux';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 
 const Info = styled.div`
   opacity: 0;
@@ -23,7 +31,11 @@ const Info = styled.div`
 `;
 
 const Container = styled.div`
+<<<<<<< HEAD
   flex: 1;
+=======
+  flex: 0 0 32.3333%;
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
   margin: 5px;
   min-width: 280px;
   height: 350px;
@@ -33,7 +45,11 @@ const Container = styled.div`
   background-color: #f5fbfd;
   position: relative;
 
+<<<<<<< HEAD
   &:hover ${Info}{
+=======
+  &:hover ${Info} {
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
     opacity: 1;
   }
 `;
@@ -68,12 +84,25 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+<<<<<<< HEAD
+=======
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(addToWishlist());
+  };
+
+  const handleCartClick = () => {
+    dispatch(addProduct({ ...item }));
+  };
+
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
   return (
     <Container>
       <Circle />
       <Image src={item.img} />
       <Info>
         <Icon>
+<<<<<<< HEAD
           <ShoppingCartOutlined />
         </Icon>
         <Icon>
@@ -83,6 +112,17 @@ const Product = ({ item }) => {
         </Icon>
         <Icon>
           <FavoriteBorderOutlined />
+=======
+          <ShoppingCartOutlined onClick={handleCartClick} />
+        </Icon>
+        <Icon>
+          <Link to={`/product/${item._id}`}>
+            <SearchOutlined />
+          </Link>
+        </Icon>
+        <Icon>
+          <FavoriteBorderOutlined onClick={handleClick} />
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
         </Icon>
       </Info>
     </Container>

@@ -11,7 +11,11 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
+<<<<<<< HEAD
     url("https://www.upwordstranslation.com/admin/uploads/produtos/95.jpg")
+=======
+    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
       center;
   background-size: cover;
   display: flex;
@@ -22,12 +26,20 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
+<<<<<<< HEAD
+=======
+  background-color: white;
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
   ${mobile({ width: "75%" })}
 `;
 
 const Title = styled.h1`
   font-size: 24px;
+<<<<<<< HEAD
   font-weight: 1000;
+=======
+  font-weight: 300;
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 `;
 
 const Form = styled.form`
@@ -40,8 +52,11 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
+<<<<<<< HEAD
   border-width : 5px;
   border-radius : 15px;
+=======
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 `;
 
 const Button = styled.button`
@@ -56,8 +71,11 @@ const Button = styled.button`
     color: green;
     cursor: not-allowed;
   }
+<<<<<<< HEAD
   border-width : 5px;
   border-radius : 15px;
+=======
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 `;
 
 const Link = styled.a`

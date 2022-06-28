@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 //import { popularProducts } from "../data";
+=======
+import { popularProducts } from "../data";
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 import Product from "./Product";
 import axios from "axios";
 

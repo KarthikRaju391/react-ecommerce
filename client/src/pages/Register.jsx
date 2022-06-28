@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { register } from "../redux/apiCalls";
+=======
+import styled from 'styled-components';
+import { mobile } from '../responsive';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { register } from '../redux/apiCalls';
+import CryptoJS from 'crypto-js';
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 
 const Container = styled.div`
   width: 100vw;
@@ -11,7 +20,11 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
+<<<<<<< HEAD
     url("https://www.logisticsinsider.in/wp-content/uploads/2020/10/ecomm.jpg")
+=======
+    url('https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
       center;
   background-size: cover;
   display: flex;
@@ -22,12 +35,21 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
+<<<<<<< HEAD
   ${mobile({ width: "75%" })}
+=======
+  background-color: white;
+  ${mobile({ width: '75%' })}
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 `;
 
 const Title = styled.h1`
   font-size: 24px;
+<<<<<<< HEAD
   font-weight: 1000;
+=======
+  font-weight: 300;
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 `;
 
 const Form = styled.form`
@@ -40,8 +62,11 @@ const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+<<<<<<< HEAD
   border-width : 5px;
   border-radius : 15px;
+=======
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 `;
 
 const Agreement = styled.span`
@@ -56,9 +81,13 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
+<<<<<<< HEAD
   border-width : 5px;
   border-radius : 15px;
   `;
+=======
+`;
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 
 const Error = styled.p`
   color: red;
@@ -69,27 +98,55 @@ const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
+<<<<<<< HEAD
   const [confirmPassword, setConfirmPassword] = useState('')
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState({ emailError: false, passwordError: false })
+=======
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState({
+    emailError: false,
+    passwordError: false,
+  });
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 
   const handleClick = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
+<<<<<<< HEAD
       setError({...error, passwordError: true })
     } else if (!(email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     ))) {
       setError({...error, emailError: true})
     } else {
       console.log("success")
+=======
+      setError({ ...error, passwordError: true });
+    } else if (
+      !email.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      setError({ ...error, emailError: true });
+    } else {
+      console.log('success');
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
       register(dispatch, {
         username,
         email,
         password,
+<<<<<<< HEAD
       })
     }
   }
+=======
+      });
+    }
+  };
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 
   return (
     <Container>
@@ -131,7 +188,13 @@ const Register = () => {
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
           <Button onClick={handleClick}>CREATE</Button>
+<<<<<<< HEAD
           {(error.emailError || error.passwordError) && <Error>Please check your email or password...</Error>}
+=======
+          {(error.emailError || error.passwordError) && (
+            <Error>Please check your email or password...</Error>
+          )}
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
         </Form>
       </Wrapper>
     </Container>

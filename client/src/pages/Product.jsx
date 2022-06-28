@@ -190,7 +190,11 @@ const Product = () => {
           </AddContainer>
         </InfoContainer>
       </Wrapper>
+<<<<<<< HEAD
       <Newsletter />
+=======
+      {/* <Newsletter /> */}
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
       <Footer />
     </Container>
   );
