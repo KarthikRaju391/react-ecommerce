@@ -53,12 +53,9 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-<<<<<<< HEAD
   height: 100%;
   width : 100%;
-=======
   height: 80%;
->>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
 `;
 
 const InfoContainer = styled.div`
