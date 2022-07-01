@@ -24,7 +24,6 @@ const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
 
-  background-color: white;
   ${mobile({ width: "75%" })}
 `;
 
@@ -46,7 +45,6 @@ const Input = styled.input`
   padding: 10px;
   border-width : 5px;
   border-radius : 15px;
-
 `;
 
 const Button = styled.button`
@@ -63,7 +61,6 @@ const Button = styled.button`
   }
   border-width : 5px;
   border-radius : 15px;
-
 `;
 
 const Link = styled.a`

@@ -1,65 +1,64 @@
-export const sliderItems = [
-    {
-      id: 1,
-      img: "https://lilacinfotech.com/lilac_assets/images/blog/What-Is-E-commerce-and-what-are-its-Applications.jpg",
-      title: "BRANDS",
+import { v4 as uuidv4 } from "uuid";
 
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "f5fafd",
+const dataSlider = [
+  {
+    id: uuidv4(),
+    title: "BRANDS",
+    subTitle: "Smart Phones",
+    img : "https://assets.new.siemens.com/siemens/assets/api/uuid:222ec96b-2e7b-4d5a-91df-743ffdf25eb3/width:2000/crop:0,28:0,23867:0,654:0,49067/quality:high/9247-electronics-visual-211217-cmyk.jpg"
+
+  },
+  {
+    id: uuidv4(),
+    title: "FURNITURES",
+    subTitle: "Bedroom frame and Design",
+    img : "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8YmVkcm9vbSUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+  },
+  {
+    id: uuidv4(),
+    title: "FASHION",
+    subTitle: "Get the stylish outfits",
+    img : "https://cdn.mos.cms.futurecdn.net/uPTkLTkC2kZiKzWGCs7oG3.jpg",
+  },
+  {
+    id: uuidv4(),
+    title: "FURNITURES",
+    subTitle: "Sofa set to get your house a new look",
+    img : "https://cdn.mos.cms.futurecdn.net/CSHHzFLteZC276m6xVGuwd.jpg",
+  },
+ 
+  {
+    id: uuidv4(),
+    title: "HEADPHONES",
+    subTitle: "No worries of wires",
+    img : "https://cdn.britannica.com/89/229389-050-EC3C3261/Young-woman-wearing-headphones-listening-to-music.jpg"
     },
-    {
-      id: 2,
-      img: "https://img.freepik.com/free-photo/portrait-retro-1920s-english-arabian-business-man-wearing-dark-suit-tie-flat-cap-near-old-columns_151355-8589.jpg?w=2000",
-      title: "KARTHYAV MONTH",
-      img: "https://i.ibb.co/DG69bQ4/2.png",
-      title: "AUTUMN COLLECTION",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "fcf1ed",
-    },
-    {
-      id: 3,
-      img: "https://etimg.etb2bimg.com/photo/75177098.cms",
-      title: "BEST DEALS",
-      img: "https://i.ibb.co/cXFnLLV/3.png",
-      title: "LOUNGEWEAR LOVE",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "fbf0f4",
-    },
-  ];
+  
+  
+];
+
+export default dataSlider;
+
 
   export const categories = [
     {
       id: 1,
       img: "https://cdn.shopify.com/s/files/1/2360/8505/products/Shirt-Style-T-Shirt-In-Navy-Blue_860x.jpg?v=1559847776",
-      title: "SHIRT STYLE!",
+      title: "FAHION",
       cat:"women"
     },
     {
       id: 2,
-      img: "https://img.mensxp.com/media/content/2020/Aug/Easy-To-Follow-Tips-To-Wear-A-Denim-Jacket-Like-A-Big-Shot-Celebrity-500-2_5f2d458334ee7.jpeg",
-      title: "DENIM JACKETS",
+      img: "https://www.movilzona.es/app/uploads-movilzona.es/2022/03/cambiar-hora-smartwatch.jpg",
+      title: "ELECTRONICS",
       cat:"coat"
     },
     {
       id: 3,
-      img: "https://cdn.shopify.com/s/files/1/1025/3059/products/NAVY_BLUE_SUIT__075_0ba78598-6c22-4024-820e-019a5fdb109a_830x1230_crop_center.jpg?v=1643118883",
-      title: "SUITS",
-      cat:"jeans",
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "FASHION",
-      cat:"fashion"
-    },
-    {
-      id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "ELECTRONICS",
-      cat:"electronics"
-    },
-    {
-      id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "FURNITURE",
-      cat:"furniture"
+      img: "https://rukminim1.flixcart.com/image/612/612/kk2wl8w0/nesting-table/0/2/x/2-na-particle-board-08-priti-brown-original-imafzg66g5tgf7dt.jpeg?q=70",
+      title: "FURNITURES",
+      cat:"jeans"
+
     },
   ];
 

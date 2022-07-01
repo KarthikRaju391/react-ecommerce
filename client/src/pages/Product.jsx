@@ -190,7 +190,6 @@ const Product = () => {
           </AddContainer>
         </InfoContainer>
       </Wrapper>
-      <Newsletter />
       {/* <Newsletter /> */}
       <Footer />
     </Container>

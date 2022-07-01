@@ -1,8 +1,3 @@
-import styled from "styled-components";
-import { mobile } from "../responsive";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { register } from "../redux/apiCalls";
 import styled from 'styled-components';
 import { mobile } from '../responsive';
 import { useDispatch } from 'react-redux';
@@ -29,21 +24,14 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
-<<<<<<< HEAD
   ${mobile({ width: "75%" })}
-=======
-  background-color: white;
-  ${mobile({ width: '75%' })}
->>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
+
 `;
 
 const Title = styled.h1`
   font-size: 24px;
-<<<<<<< HEAD
   font-weight: 1000;
-=======
-  font-weight: 300;
->>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
+
 `;
 
 const Form = styled.form`
@@ -73,10 +61,10 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
-<<<<<<< HEAD
   border-width : 5px;
   border-radius : 15px;
   `;
+
 
 const Error = styled.p`
   color: red;
@@ -87,21 +75,17 @@ const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState({ emailError: false, passwordError: false })
+  const [error, setError] = useState({
+    emailError: false,
+    passwordError: false,
   });
 
   const handleClick = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setError({...error, passwordError: true })
-    } else if (!(email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    ))) {
-      setError({...error, emailError: true})
-    } else {
-      console.log("success")
       setError({ ...error, passwordError: true });
     } else if (
       !email.match(
@@ -115,9 +99,10 @@ const Register = () => {
         username,
         email,
         password,
-      })
+      });
     }
-  }
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -158,8 +143,9 @@ const Register = () => {
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
           <Button onClick={handleClick}>CREATE</Button>
-          {(error.emailError || error.passwordError) && <Error>Please check your email or password...</Error>}
-
+          {(error.emailError || error.passwordError) && (
+            <Error>Please check your email or password...</Error>
+          )}
         </Form>
       </Wrapper>
     </Container>
