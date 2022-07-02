@@ -45,19 +45,19 @@ export default dataSlider;
       id: 1,
       img: "https://cdn.shopify.com/s/files/1/2360/8505/products/Shirt-Style-T-Shirt-In-Navy-Blue_860x.jpg?v=1559847776",
       title: "FASHION",
-      cat:"women"
+      cat:"fashion"
     },
     {
       id: 2,
       img: "https://www.movilzona.es/app/uploads-movilzona.es/2022/03/cambiar-hora-smartwatch.jpg",
       title: "ELECTRONICS",
-      cat:"coat"
+      cat:"electronics"
     },
     {
       id: 3,
       img: "https://rukminim1.flixcart.com/image/612/612/kk2wl8w0/nesting-table/0/2/x/2-na-particle-board-08-priti-brown-original-imafzg66g5tgf7dt.jpeg?q=70",
       title: "FURNITURES",
-      cat:"jeans"
+      cat:"furniture"
 
     },
   ];
