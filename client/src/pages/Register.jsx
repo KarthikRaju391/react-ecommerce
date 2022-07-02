@@ -86,11 +86,12 @@ const Register = () => {
     ) {
       setError({ ...error, emailError: true });
     } else {
-      console.log('success');
+      let imgHash = CryptoJS.MD5(email);
       register(dispatch, {
         username,
         email,
         password,
+        img: `https://www.gravatar.com/avatar/${imgHash}`,
       });
     }
   };

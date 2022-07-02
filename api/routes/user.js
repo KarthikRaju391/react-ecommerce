@@ -10,6 +10,17 @@ const {
 const router = require('express').Router();
 
 //UPDATE
+router.post('/', verifyTokenAndAdmin, async (req, res) => {
+  const newUser = new User(req.body);
+
+  try {
+    const addedUser = await newUser.save();
+    res.status(200).json(addedUser);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(

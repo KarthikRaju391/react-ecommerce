@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
-import { userRequest } from "../requestMethods";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
+import { userRequest } from '../requestMethods';
 
 const Success = () => {
   const location = useLocation();
+  console.log('location', location);
   //in Cart.jsx I sent data and cart. Please check that page for the changes.(in video it's only data)
   const data = location.state.stripeData;
   const cart = location.state.cart;
@@ -14,7 +15,7 @@ const Success = () => {
   useEffect(() => {
     const createOrder = async () => {
       try {
-        const res = await userRequest.post("/orders", {
+        const res = await userRequest.post('/orders', {
           userId: currentUser._id,
           products: cart.products.map((item) => ({
             productId: item._id,
@@ -32,11 +33,11 @@ const Success = () => {
   return (
     <div
       style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       {orderId

@@ -9,7 +9,9 @@ import {
   registerSuccess,
   registerFailure,
 } from './userRedux';
-import { publicRequest } from '../requestMethods';
+
+import { publicRequest, userRequest } from '../requestMethods';
+import { addProduct } from './cartRedux';
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -26,7 +28,7 @@ export const logout = async (dispatch) => {
   try {
     dispatch(logoutSuccess());
   } catch (error) {
-    dispatch(logoutFailure);
+    dispatch(logoutFailure());
   }
 };
 
@@ -37,5 +39,14 @@ export const register = async (dispatch, user) => {
     dispatch(registerSuccess(res.data));
   } catch (error) {
     dispatch(registerFailure());
+  }
+};
+
+export const addToCart = async (dispatch, product, userId) => {
+  try {
+    await userRequest.post('/carts', { userId, product });
+    dispatch(addProduct({ product, userId }));
+  } catch (err) {
+    console.log(err);
   }
 };

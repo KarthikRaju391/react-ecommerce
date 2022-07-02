@@ -6,8 +6,10 @@ import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
 import { useEffect, useMemo, useState } from "react";
 import { userRequest } from "../../requestMethods";
+import { useSelector } from 'react-redux'
 
 export default function Home() {
+  const user = useSelector(state => state.user.currentUser)
   const [userStats, setUserStats] = useState([]);
 
   const MONTHS = useMemo(

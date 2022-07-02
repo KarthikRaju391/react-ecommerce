@@ -1,8 +1,9 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { login } from "../redux/apiCalls";
-import { mobile } from "../responsive";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from 'react';
+import styled from 'styled-components';
+import { login } from '../redux/apiCalls';
+import { mobile } from '../responsive';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100vw;
@@ -11,7 +12,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url('https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
       center;
   background-size: cover;
   display: flex;
@@ -23,7 +24,7 @@ const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
   background-color: white;
-  ${mobile({ width: "75%" })}
+  ${mobile({ width: '75%' })}
 `;
 
 const Title = styled.h1`
@@ -57,7 +58,7 @@ const Button = styled.button`
   }
 `;
 
-const Link = styled.a`
+const Links = styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
@@ -69,8 +70,8 @@ const Error = styled.span`
 `;
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
 
@@ -96,8 +97,29 @@ const Login = () => {
             LOGIN
           </Button>
           {error && <Error>Something went wrong...</Error>}
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Link
+            style={{
+              margin: '5px 0px',
+              fontSize: '12px',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              color: 'black',
+            }}
+          >
+            DO NOT YOU REMEMBER THE PASSWORD?
+          </Link>
+          <Link
+            style={{
+              margin: '5px 0px',
+              fontSize: '12px',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              color: 'black',
+            }}
+            to="/register"
+          >
+            CREATE A NEW ACCOUNT
+          </Link>
         </Form>
       </Wrapper>
     </Container>

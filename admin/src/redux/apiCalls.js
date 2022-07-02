@@ -10,6 +10,9 @@ import {
   updateUserStart,
   updateUserSuccess,
   updateUserFailure,
+  addUserFailure,
+  addUserStart,
+  addUserSuccess,
 } from './usersRedux';
 import {
   getProductFailure,
@@ -59,7 +62,7 @@ export const deleteProduct = async (id, dispatch) => {
 export const updateProduct = async (id, product, dispatch) => {
   dispatch(updateProductStart());
   try {
-    // update
+    await userRequest.put(`/products/${id}`, product);
     dispatch(updateProductSuccess({ id, product }));
   } catch (err) {
     dispatch(updateProductFailure());
@@ -72,6 +75,16 @@ export const addProduct = async (product, dispatch) => {
     dispatch(addProductSuccess(res.data));
   } catch (err) {
     dispatch(addProductFailure());
+  }
+};
+
+export const addUser = async (user, dispatch) => {
+  dispatch(addUserStart());
+  try {
+    const res = await userRequest.post('/users', user);
+    dispatch(addUserSuccess(res.data));
+  } catch (error) {
+    dispatch(addUserFailure());
   }
 };
 
@@ -89,7 +102,7 @@ export const getUsers = async (dispatch) => {
 export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUserStart());
   try {
-    const res = await userRequest.delete(`/user/${id}`);
+    const res = await userRequest.delete(`/users/${id}`);
     dispatch(deleteUserSuccess(id));
   } catch (err) {
     dispatch(deleteUserFailure());
@@ -105,4 +118,3 @@ export const updateUser = async (id, user, dispatch) => {
     dispatch(updateUserFailure());
   }
 };
-

@@ -70,13 +70,22 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+  console.log('product-dets', item);
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(addToWishlist());
   };
 
-  const handleCartClick = () => {
-    dispatch(addProduct({ ...item }));
+  const handleCartClick = (item_details) => {
+    dispatch(
+      addProduct({
+        ...item_details,
+        color: item_details.color[0],
+        price: item_details.price,
+        size: item_details.size[0],
+        quantity: 1,
+      })
+    );
   };
 
   return (
@@ -85,7 +94,7 @@ const Product = ({ item }) => {
       <Image src={item.img} />
       <Info>
         <Icon>
-          <ShoppingCartOutlined onClick={handleCartClick} />
+          <ShoppingCartOutlined onClick={() => handleCartClick(item)} />
         </Icon>
         <Icon>
           <Link to={`/product/${item._id}`}>

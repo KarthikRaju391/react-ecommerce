@@ -23,7 +23,6 @@ export default function User() {
   const [admin, setAdmin] = useState(user.isAdmin);
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
-  console.log(admin);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -111,13 +110,13 @@ export default function User() {
               <label>Admin</label>
               {user.isAdmin ? (
                 <select onChange={(e) => setAdmin(e.target.value)}>
-                  <option defaultValue={user.isAdmin}>true</option>
-                  <option value="false">false</option>
+                  <option defaultValue={user.isAdmin}>Yes</option>
+                  <option value="false">No</option>
                 </select>
               ) : (
                 <select onChange={(e) => setAdmin(e.target.value)}>
-                  <option defaultValue={user.isAdmin}>false</option>
-                  <option value="true">true</option>
+                  <option defaultValue={user.isAdmin}>No</option>
+                  <option value="true">Yes</option>
                 </select>
               )}
             </div>

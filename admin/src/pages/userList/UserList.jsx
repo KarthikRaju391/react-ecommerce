@@ -36,9 +36,16 @@ export default function UserList() {
     },
     { field: "email", headerName: "Email", width: 200 },
     {
-      field: "status",
-      headerName: "Status",
+      field: "admin",
+      headerName: "Admin",
       width: 120,
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.isAdmin ? <p>Yes</p> : <p>No</p>}
+          </div>
+        )
+      }
     },
     {
       field: "transaction",
