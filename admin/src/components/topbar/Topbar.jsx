@@ -1,8 +1,9 @@
 import React from 'react';
 import './topbar.css';
 import { NotificationsNone, Language, Settings } from '@material-ui/icons';
-
+import { useSelector } from 'react-redux';
 export default function Topbar() {
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <div className="topbar">
       <div className="topbarWrapper">
@@ -22,7 +23,10 @@ export default function Topbar() {
             <Settings />
           </div>
           <img
-            src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            src={
+              user.img ||
+              'https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif'
+            }
             alt=""
             className="topAvatar"
           />

@@ -11,7 +11,13 @@ import {
 } from './userRedux';
 
 import { publicRequest, userRequest } from '../requestMethods';
-import { addProduct } from './cartRedux';
+import {
+  addProduct,
+  hideCartNotification,
+  hideWishNotification,
+  notifyUserCart,
+  notifyUserWish,
+} from './cartRedux';
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -49,4 +55,18 @@ export const addToCart = async (dispatch, product, userId) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const showCartNotification = (dispatch) => {
+  dispatch(notifyUserCart());
+  setTimeout(() => {
+    dispatch(hideCartNotification());
+  }, 2500);
+};
+
+export const showWishNotification = (dispatch) => {
+  dispatch(notifyUserWish());
+  setTimeout(() => {
+    dispatch(hideWishNotification());
+  }, 2500);
 };

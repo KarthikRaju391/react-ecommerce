@@ -11,7 +11,15 @@ const router = require('express').Router();
 
 //UPDATE
 router.post('/', verifyTokenAndAdmin, async (req, res) => {
-  const newUser = new User(req.body);
+  const newUser = new User({
+    username: req.body.username,
+    email: req.body.email,
+    img: req.body.img,
+    password: CryptoJS.AES.encrypt(
+      req.body.password,
+      process.env.PASS_SEC
+    ).toString(),
+  });
 
   try {
     const addedUser = await newUser.save();

@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: {
     currentUser: null,
     isFetching: false,
@@ -19,9 +19,7 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    logout: (state) => {
-      state.currentUser = null;
-    },
+    logout: () => {},
   },
 });
 

@@ -1,65 +1,68 @@
-import "./userList.css";
-import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUsers, deleteUser } from "../../redux/apiCalls";
+import './userList.css';
+import { DataGrid } from '@material-ui/data-grid';
+import { DeleteOutline } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers, deleteUser } from '../../redux/apiCalls';
 
 export default function UserList() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users)
-  console.log(users)
+  const users = useSelector((state) => state.users.users);
+  console.log(users);
 
   useEffect(() => {
     getUsers(dispatch);
-  }, [dispatch])
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     deleteUser(id, dispatch);
   };
-  
+
   const columns = [
-    { field: "_id", headerName: "ID", width: 220 },
+    { field: '_id', headerName: 'ID', width: 220 },
     {
-      field: "user",
-      headerName: "User",
+      field: 'user',
+      headerName: 'User',
       width: 200,
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            <img className="userListImg" src={params.row.avatar} alt="" />
+            <img
+              className="userListImg"
+              src={
+                params.row.img ||
+                'https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif'
+              }
+              alt=""
+            />
             {params.row.username}
           </div>
         );
       },
     },
-    { field: "email", headerName: "Email", width: 200 },
+    { field: 'email', headerName: 'Email', width: 200 },
     {
-      field: "admin",
-      headerName: "Admin",
+      field: 'admin',
+      headerName: 'Admin',
       width: 120,
       renderCell: (params) => {
-        return (
-          <div>
-            {params.row.isAdmin ? <p>Yes</p> : <p>No</p>}
-          </div>
-        )
-      }
+        return <div>{params.row.isAdmin ? <p>Yes</p> : <p>No</p>}</div>;
+      },
     },
     {
-      field: "transaction",
-      headerName: "Transaction Volume",
+      field: 'transaction',
+      headerName: 'Transaction Volume',
       width: 160,
     },
     {
-      field: "action",
-      headerName: "Action",
+      field: 'action',
+      headerName: 'Action',
       width: 150,
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row._id}>
+            <Link to={'/user/' + params.row._id}>
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
