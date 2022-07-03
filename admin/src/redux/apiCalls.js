@@ -16,6 +16,7 @@ import {
   addUserEnd,
   updateUserEnd,
 } from './usersRedux';
+
 import {
   getProductFailure,
   getProductStart,
@@ -31,7 +32,7 @@ import {
   addProductStart,
   addProductSuccess,
   addProductEnd,
-} from './productRedux';
+} from "./productRedux";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
@@ -46,7 +47,7 @@ export const login = async (dispatch, user) => {
 export const getProducts = async (dispatch) => {
   dispatch(getProductStart());
   try {
-    const res = await publicRequest.get('/products');
+    const res = await publicRequest.get("/products");
     dispatch(getProductSuccess(res.data));
   } catch (err) {
     dispatch(getProductFailure());
@@ -100,12 +101,18 @@ export const addUser = async (user, dispatch) => {
     dispatch(addUserFailure());
   }
 };
-
-// USERS
+// USERS 
 export const getUsers = async (dispatch) => {
   dispatch(getAllUsersStart());
   try {
     const res = await userRequest.get('/users');
+    dispatch(getAllUsersSuccess(res.data))
+  } catch (error) {
+    dispatch(getAllUsersFailure())
+  }
+}
+
+export const deleteUser = async (id, dispatch) => { 
     dispatch(getAllUsersSuccess(res.data));
   } catch (error) {
     dispatch(getAllUsersFailure());

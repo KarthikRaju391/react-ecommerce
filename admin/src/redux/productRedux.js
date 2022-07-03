@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+import { createSlice } from "@reduxjs/toolkit";
+
+export const productSlice = createSlice({
+  name: "product",
+=======
 import { createSlice } from '@reduxjs/toolkit';
 
 export const productSlice = createSlice({
   name: 'product',
+>>>>>>> 1b641510357a7b0d0cd606f13c7fdc319185bbb7
   initialState: {
     products: [],
     isFetching: false,

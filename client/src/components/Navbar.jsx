@@ -89,7 +89,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>LAMA.</Logo>
+          <Logo>KIVIY</Logo>
         </Center>
         <Right>
           {!user && (
