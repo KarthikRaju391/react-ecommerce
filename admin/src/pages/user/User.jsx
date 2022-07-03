@@ -36,6 +36,7 @@ export default function User() {
   const user = useSelector((state) =>
     state.users.users.find((user) => user._id === userId)
   );
+  console.log(user);
 
   const [admin, setAdmin] = useState(user.isAdmin);
   const [username, setUsername] = useState(user.username);
@@ -68,7 +69,10 @@ export default function User() {
         <div className="userShow">
           <div className="userShowTop">
             <img
-              src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={
+                user.img ||
+                'https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif'
+              }
               alt=""
               className="userShowImg"
             />

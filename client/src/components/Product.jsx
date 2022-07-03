@@ -5,7 +5,8 @@ import {
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { addToWishlist, addProduct } from '../redux/cartRedux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { showCartNotification, showWishNotification } from '../redux/apiCalls';
 import styled from 'styled-components';
 
 const Info = styled.div`
@@ -15,11 +16,12 @@ const Info = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 3;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   transition: all 0.5s ease;
   cursor: pointer;
 `;
@@ -68,44 +70,64 @@ const Icon = styled.div`
     transform: scale(1.1);
   }
 `;
+const InfoMeta = styled.div`
+  color: white;
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const InfoIcons = styled.div`
+  display: flex;
+`;
 
 const Product = ({ item }) => {
-  console.log('product-dets', item);
   const dispatch = useDispatch();
+  const Id = useSelector((state) => state.user.currentUser._id);
   const handleClick = () => {
     dispatch(addToWishlist());
+    showWishNotification(dispatch);
   };
 
   const handleCartClick = (item_details) => {
-    dispatch(
-      addProduct({
-        ...item_details,
-        color: item_details.color[0],
-        price: item_details.price,
-        size: item_details.size[0],
-        quantity: 1,
-      })
-    );
+    const newProduct = {
+      ...item_details,
+      color: item_details.color[0],
+      price: item_details.price,
+      size: item_details.size[0],
+      quantity: 1,
+    };
+    dispatch(addProduct({ product: newProduct, Id }));
+    showCartNotification(dispatch);
   };
 
   return (
-    <Container>
-      <Circle />
-      <Image src={item.img} />
-      <Info>
-        <Icon>
-          <ShoppingCartOutlined onClick={() => handleCartClick(item)} />
-        </Icon>
-        <Icon>
-          <Link to={`/product/${item._id}`}>
-            <SearchOutlined />
-          </Link>
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlined onClick={handleClick} />
-        </Icon>
-      </Info>
-    </Container>
+    <div>
+      <Container>
+        <Circle />
+        <Image src={item.img} />
+        <Info>
+          <InfoMeta>
+            <h2>{item.title}</h2>
+            <h3>₹{item.price}</h3>
+          </InfoMeta>
+          <InfoIcons>
+            <Icon>
+              <ShoppingCartOutlined onClick={() => handleCartClick(item)} />
+            </Icon>
+            <Icon>
+              <Link to={`/product/${item._id}`}>
+                <SearchOutlined />
+              </Link>
+            </Icon>
+            <Icon>
+              <FavoriteBorderOutlined onClick={handleClick} />
+            </Icon>
+          </InfoIcons>
+        </Info>
+      </Container>
+    </div>
   );
 };
 

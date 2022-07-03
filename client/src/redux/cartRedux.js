@@ -8,6 +8,8 @@ const cartSlice = createSlice({
     quantity: 0,
     total: 0,
     wishlist: 0,
+    notifyCart: false,
+    notifyWish: false,
   },
   reducers: {
     addProduct: (state, action) => {
@@ -20,6 +22,18 @@ const cartSlice = createSlice({
     },
     addToWishlist: (state) => {
       state.wishlist += 1;
+    },
+    notifyUserCart: (state) => {
+      state.notifyCart = true;
+    },
+    hideCartNotification: (state) => {
+      state.notifyCart = false;
+    },
+    notifyUserWish: (state) => {
+      state.notifyWish = true;
+    },
+    hideWishNotification: (state) => {
+      state.notifyWish = false;
     },
     increaseQuantity: (state, action) => {
       state.products.forEach((product) => {
@@ -52,6 +66,14 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addProduct, addToWishlist, increaseQuantity, decreaseQuantity } =
-  cartSlice.actions;
+export const {
+  addProduct,
+  addToWishlist,
+  increaseQuantity,
+  decreaseQuantity,
+  notifyUserCart,
+  notifyUserWish,
+  hideWishNotification,
+  hideCartNotification,
+} = cartSlice.actions;
 export default cartSlice.reducer;

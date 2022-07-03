@@ -2,10 +2,10 @@ import './newUser.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../redux/apiCalls';
+import CryptoJS from 'crypto-js';
 
 export default function NewUser() {
   const dispatch = useDispatch();
-  const [created, setCreated] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -26,16 +26,16 @@ export default function NewUser() {
     ) {
       setError({ ...error, emailError: true });
     } else {
+      let imgHash = CryptoJS.MD5(email);
       addUser(
         {
           username,
           email,
           password,
+          img: `https://www.gravatar.com/avatar/${imgHash}`,
         },
         dispatch
       );
-      setCreated(true);
-      setTimeout(() => setCreated(false), 3000);
       setEmail('');
       setUsername('');
       setPassword('');
@@ -84,11 +84,6 @@ export default function NewUser() {
             Create
           </button>
         </form>
-      </div>
-      <div>
-        {created && (
-          <p className="successContainer">User was successfully created!</p>
-        )}
       </div>
     </div>
   );

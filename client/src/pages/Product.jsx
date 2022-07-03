@@ -1,4 +1,5 @@
 import { Add, Remove } from '@material-ui/icons';
+import Alert from '@material-ui/lab/Alert';
 import styled from 'styled-components';
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
@@ -9,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { publicRequest } from '../requestMethods';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../redux/apiCalls';
+import { addToCart, showCartNotification } from '../redux/apiCalls';
 import { addProduct } from '../redux/cartRedux';
 const Container = styled.div``;
 
@@ -128,7 +129,7 @@ const Product = () => {
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
   const dispatch = useDispatch();
-
+  const { notifyCart } = useSelector((state) => state.cart);
   const Id = useSelector((state) => state.user.currentUser._id);
   useEffect(() => {
     const getProduct = async () => {
@@ -150,14 +151,29 @@ const Product = () => {
 
   const handleClick = () => {
     const newProduct = { ...product, quantity, color, size };
-    dispatch(addProduct({ product: newProduct, userId: Id }));
-    //addToCart(dispatch, newProduct, Id);
+    dispatch(addProduct({ product: newProduct, Id }));
+    showCartNotification(dispatch);
   };
   console.log('product categories', product.categories);
   return (
     <Container>
       <Navbar />
-      <Announcement />
+      {notifyCart && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '10',
+            right: 0,
+            zIndex: 999,
+            width: '35%',
+          }}
+        >
+          <Alert variant="filled" severity="success">
+            Item was added to cart successfully
+          </Alert>
+        </div>
+      )}
       <Wrapper>
         <ImgContainer>
           <Image src={product.img} />
@@ -195,7 +211,6 @@ const Product = () => {
           </AddContainer>
         </InfoContainer>
       </Wrapper>
-      {/* <Newsletter /> */}
       <Footer />
     </Container>
   );

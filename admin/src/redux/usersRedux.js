@@ -53,6 +53,8 @@ export const usersSlice = createSlice({
     users: [],
     isFetching: false,
     error: false,
+    notifyAdd: false,
+    notifyUpdate: true,
   },
   reducers: {
     // GET ALL
@@ -93,6 +95,10 @@ export const usersSlice = createSlice({
       state.users[
         state.users.findIndex((user) => user._id === action.payload.id)
       ] = action.payload.user;
+      state.notifyUpdate = true;
+    },
+    updateUserEnd: (state) => {
+      state.notifyUpdate = false;
     },
     updateUserFailure: (state) => {
       state.isFetching = false;
@@ -104,12 +110,16 @@ export const usersSlice = createSlice({
     },
     addUserSuccess: (state, action) => {
       state.isFetching = false;
-      state.users.push(action.payload)
+      state.users.push(action.payload);
+      state.notifyAdd = true;
+    },
+    addUserEnd: (state) => {
+      state.notifyAdd = false;
     },
     addUserFailure: (state) => {
       state.isFetching = false;
       state.error = true;
-    }
+    },
   },
 });
 
@@ -123,9 +133,11 @@ export const {
   updateUserStart,
   updateUserSuccess,
   updateUserFailure,
+  updateUserEnd,
   addUserFailure,
+  addUserEnd,
   addUserStart,
-  addUserSuccess
+  addUserSuccess,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;
