@@ -1,5 +1,6 @@
 import {
   FavoriteBorderOutlined,
+  Favorite,
   SearchOutlined,
   ShoppingCartOutlined,
 } from '@material-ui/icons';
@@ -7,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { addToWishlist, addProduct } from '../redux/cartRedux';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCartNotification, showWishNotification } from '../redux/apiCalls';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const Info = styled.div`
@@ -84,10 +86,12 @@ const InfoIcons = styled.div`
 
 const Product = ({ item }) => {
   const dispatch = useDispatch();
+  const [liked, setLiked] = useState(false);
   const Id = useSelector((state) => state.user.currentUser._id);
   const handleClick = () => {
     dispatch(addToWishlist());
     showWishNotification(dispatch);
+    setLiked(true);
   };
 
   const handleCartClick = (item_details) => {
@@ -122,7 +126,11 @@ const Product = ({ item }) => {
               </Link>
             </Icon>
             <Icon>
-              <FavoriteBorderOutlined onClick={handleClick} />
+              {liked ? (
+                <Favorite />
+              ) : (
+                <FavoriteBorderOutlined onClick={handleClick} />
+              )}
             </Icon>
           </InfoIcons>
         </Info>

@@ -6,6 +6,7 @@ import { userRequest } from '../../requestMethods';
 export default function FeaturedInfo() {
   const [income, setIncome] = useState([]);
   const [perc, setPerc] = useState(0);
+  const [orders, setOrders] = useState([])
 
   useEffect(() => {
     const getIncome = async () => {
@@ -15,11 +16,26 @@ export default function FeaturedInfo() {
         setPerc((res.data[1].total * 100) / res.data[0].total - 100);
       } catch {}
     };
+    const getOrders = async () => {
+      try {
+        const res = await userRequest.get('orders')
+        setOrders(res.data)
+      } catch (error) {
+        
+      }
+    }
     getIncome();
+    getOrders();
   }, []);
 
   console.log(perc);
 
+  let sales = 0
+  orders && orders.forEach((order) => {
+    order.products.forEach(product => {
+      sales += product.quantity;
+    })
+  })
   return (
     <div className="featured">
       <div className="featuredItem">
@@ -40,9 +56,9 @@ export default function FeaturedInfo() {
       <div className="featuredItem">
         <span className="featuredTitle">Sales</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">₹4,415</span>
+          <span className="featuredMoney">{sales}</span>
           <span className="featuredMoneyRate">
-            -1.4 <ArrowDownward className="featuredIcon negative" />
+            %2.4 <ArrowUpward className="featuredIcon" />
           </span>
         </div>
         <span className="featuredSub">Compared to last month</span>
@@ -52,7 +68,7 @@ export default function FeaturedInfo() {
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">₹2,225</span>
           <span className="featuredMoneyRate">
-            +2.4 <ArrowUpward className="featuredIcon" />
+            %3 <ArrowUpward className="featuredIcon" />
           </span>
         </div>
         <span className="featuredSub">Compared to last month</span>

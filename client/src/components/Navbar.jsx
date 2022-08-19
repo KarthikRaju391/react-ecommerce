@@ -61,7 +61,16 @@ const Right = styled.div`
   justify-content: flex-end;
   ${mobile({ flex: 2, justifyContent: 'center' })}
 `;
+const MenuItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+`;
 
+const Img = styled.img`
+  border-radius: 50%;
+  width: 2.5em;
+`;
 const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
@@ -94,19 +103,55 @@ const Navbar = () => {
         <Right>
           {!user && (
             <MenuItem>
-              <Link to="/register">REGISTER</Link>
+              <Link
+                style={{
+                  textDecoration: 'none',
+                  color: 'black',
+                  cursor: 'pointer',
+                }}
+                to="/register"
+              >
+                REGISTER
+              </Link>
             </MenuItem>
           )}
           <MenuItem>
             {!user ? (
-              <Link to="/login">SIGN IN</Link>
-            ) : (
-              <Link onClick={handleClick} to="/login">
-                SIGN OUT
+              <Link
+                style={{
+                  textDecoration: 'none',
+                  color: 'black',
+                  cursor: 'pointer',
+                }}
+                to="/login"
+              >
+                SIGN IN
               </Link>
+            ) : (
+              <MenuItemContainer>
+                <Img src={user.img} />
+                <Link
+                  style={{
+                    textDecoration: 'none',
+                    color: 'black',
+                    cursor: 'pointer',
+                  }}
+                  onClick={handleClick}
+                  to="/login"
+                >
+                  SIGN OUT
+                </Link>
+              </MenuItemContainer>
             )}
           </MenuItem>
-          <Link to="/cart">
+          <Link
+            style={{
+              textDecoration: 'none',
+              color: 'black',
+              cursor: 'pointer',
+            }}
+            to="/cart"
+          >
             <MenuItem>
               <Badge badgeContent={quantity} color="primary">
                 <ShoppingCartOutlined />

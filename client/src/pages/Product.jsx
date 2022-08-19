@@ -62,7 +62,6 @@ const Filter = styled.div`
   display: flex;
   align-items: center;
 `;
-
 const FilterTitle = styled.span`
   font-size: 20px;
   font-weight: 200;
@@ -141,7 +140,7 @@ const Product = () => {
     getProduct();
   }, [id]);
 
-  const handleQuantity = (type) => {
+  const handleQuantity = (type) =>{ 
     if (type === 'dec') {
       quantity > 1 && setQuantity(quantity - 1);
     } else {
@@ -184,10 +183,10 @@ const Product = () => {
           <Price>₹ {product.price}</Price>
           <FilterContainer>
             <Filter>
-              {product.categories?.includes('fashion') && (
+              {!product.categories?.includes('electronics') && (
                 <FilterTitle>Color</FilterTitle>
               )}
-              {product.categories?.includes('fashion') &&
+              {!product.categories?.includes('electronics') &&
                 product.color?.map((c) => (
                   <FilterColor color={c} key={c} onClick={() => setColor(c)} />
                 ))}

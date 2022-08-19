@@ -9,217 +9,221 @@ import { useDispatch } from 'react-redux';
 import { updateProduct } from '../../redux/apiCalls';
 
 import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
+	getStorage,
+	ref,
+	uploadBytesResumable,
+	getDownloadURL,
 } from 'firebase/storage';
 import app from '../../firebase';
 
 export default function Product() {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const productId = location.pathname.split('/')[2];
-  const [pStats, setPStats] = useState([]);
-  const [inputs, setInputs] = useState({});
-  const [file, setFile] = useState(null);
-  const product = useSelector((state) =>
-    state.product.products.find((product) => product._id === productId)
-  );
+	const dispatch = useDispatch();
+	const location = useLocation();
+	const productId = location.pathname.split('/')[2];
+	const [pStats, setPStats] = useState([]);
+	const [inputs, setInputs] = useState({});
+	const [file, setFile] = useState(null);
+	const product = useSelector((state) =>
+		state.product.products.find((product) => product._id === productId)
+	);
 
-  const MONTHS = useMemo(
-    () => [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Agu',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ],
-    []
-  );
+	const MONTHS = useMemo(
+		() => [
+			'Jan',
+			'Feb',
+			'Mar',
+			'Apr',
+			'May',
+			'Jun',
+			'Jul',
+			'Agu',
+			'Sep',
+			'Oct',
+			'Nov',
+			'Dec',
+		],
+		[]
+	);
 
-  const [desc, setDesc] = useState(product.desc);
-  const [title, setTitle] = useState(product.title);
-  const [price, setPrice] = useState(product.price);
-  const [stock, setStock] = useState(product.inStock);
+	const [desc, setDesc] = useState(product.desc);
+	const [title, setTitle] = useState(product.title);
+	const [price, setPrice] = useState(product.price);
+	const [stock, setStock] = useState(product.inStock);
 
-  useEffect(() => {
-    const getStats = async () => {
-      try {
-        const res = await userRequest.get('orders/income?pid=' + productId);
-        const list = res.data.sort((a, b) => {
-          return a._id - b._id;
-        });
-        list.map((item) =>
-          setPStats((prev) => [
-            ...prev,
-            { name: MONTHS[item._id - 1], Sales: item.total },
-          ])
-        );
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getStats();
-  }, [productId, MONTHS]);
+	useEffect(() => {
+		const getStats = async () => {
+			try {
+				const res = await userRequest.get('orders/income?pid=' + productId);
+				const list = res.data.sort((a, b) => {
+					return a._id - b._id;
+				});
+				list.map((item) =>
+					setPStats((prev) => [
+						...prev,
+						{ name: MONTHS[item._id - 1], Sales: item.total },
+					])
+				);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		getStats();
+	}, [productId, MONTHS]);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log(inputs);
-    if (file) {
-      const fileName = new Date().getTime() + file.name;
-      const storage = getStorage(app);
-      const storageRef = ref(storage, fileName);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+	const handleClick = (e) => {
+		e.preventDefault();
+		console.log(inputs);
+		if (file) {
+			const fileName = new Date().getTime() + file.name;
+			const storage = getStorage(app);
+			const storageRef = ref(storage, fileName);
+			const uploadTask = uploadBytesResumable(storageRef, file);
 
-      uploadTask.on(
-        'state_changed',
-        (snapshot) => {
-          // Observe state change events such as progress, pause, and resume
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case 'paused':
-              console.log('Upload is paused');
-              break;
-            case 'running':
-              console.log('Upload is running');
-              break;
-            default:
-          }
-        },
-        (error) => {
-          // Handle unsuccessful uploads
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            updateProduct(
-              productId,
-              {
-                ...product,
-                title,
-                desc,
-                price,
-                inStock: stock,
-                img: downloadURL,
-              },
-              dispatch
-            );
-          });
-        }
-      );
-    } else {
-      updateProduct(
-        productId,
-        { ...product, title, desc, price, inStock: stock },
-        dispatch
-      );
-    }
-  };
+			uploadTask.on(
+				'state_changed',
+				(snapshot) => {
+					// Observe state change events such as progress, pause, and resume
+					// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+					const progress =
+						(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					console.log('Upload is ' + progress + '% done');
+					switch (snapshot.state) {
+						case 'paused':
+							console.log('Upload is paused');
+							break;
+						case 'running':
+							console.log('Upload is running');
+							break;
+						default:
+					}
+				},
+				(error) => {
+					// Handle unsuccessful uploads
+				},
+				() => {
+					getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+						updateProduct(
+							productId,
+							{
+								...product,
+								title,
+								desc,
+								price,
+								inStock: stock,
+								img: downloadURL,
+							},
+							dispatch
+						);
+					});
+				}
+			);
+		} else {
+			updateProduct(
+				productId,
+				{ ...product, title, desc, price, inStock: stock },
+				dispatch
+			);
+		}
+	};
 
-  return (
-    <div className="product">
-      <div className="productTitleContainer">
-        <h1 className="productTitle">Product</h1>
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
-        </Link>
-      </div>
-      <div className="productTop">
-        <div className="productTopLeft">
-          <Chart data={pStats} dataKey="Sales" title="Sales Performance" />
-        </div>
-        <div className="productTopRight">
-          <div className="productInfoTop">
-            <img src={product.img} alt="" className="productInfoImg" />
-            <span className="productName">{product.title}</span>
-          </div>
-          <div className="productInfoBottom">
-            <div className="productInfoItem">
-              <span className="productInfoKey">id:</span>
-              <span className="productInfoValue">{product._id}</span>
-            </div>
-            <div className="productInfoItem">
-              <span className="productInfoKey">sales:</span>
-              <span className="productInfoValue">5123</span>
-            </div>
-            <div className="productInfoItem">
-              <span className="productInfoKey">in stock:</span>
-              <span className="productInfoValue">{product.inStock}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="productBottom">
-        <form className="productForm">
-          <div className="productFormLeft">
-            <label>Product Name</label>
-            <input
-              onChange={(e) => setTitle(e.target.value)}
-              type="text"
-              placeholder={product.title}
-            />
-            <label>Product Description</label>
-            <input
-              onChange={(e) => setDesc(e.target.value)}
-              type="text"
-              placeholder={product.desc}
-            />
-            <label>Price</label>
-            <input
-              onChange={(e) => setPrice(e.target.value)}
-              type="text"
-              placeholder={product.price}
-            />
-            <label>In Stock</label>
-            {product.inStock ? (
-              <select
-                name="inStock"
-                id="idStock"
-                onChange={(e) => setStock(e.target.value)}
-              >
-                <option defaultValue={product.inStock}>Yes</option>
-                <option value="false">No</option>
-              </select>
-            ) : (
-              <select
-                name="inStock"
-                id="idStock"
-                onChange={(e) => setStock(e.target.value)}
-              >
-                <option defaultValue={product.inStock}>No</option>
-                <option value="true">Yes</option>
-              </select>
-            )}
-          </div>
-          <div className="productFormRight">
-            <div className="productUpload">
-              <img src={product.img} alt="" className="productUploadImg" />
-              <label for="file">
-                <Publish />
-              </label>
-              <input
-                onChange={(e) => setFile(e.target.files[0])}
-                type="file"
-                id="file"
-                style={{ display: 'none' }}
-              />
-            </div>
-            <button onClick={handleClick} className="productButton">
-              Update
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+	return (
+		<div className="product">
+			<div className="productTitleContainer">
+				<h1 className="productTitle">Product</h1>
+				<Link to="/newproduct">
+					<button className="productAddButton">Create</button>
+				</Link>
+			</div>
+			<div className="productTop">
+				<div className="productTopLeft">
+					<Chart data={pStats} dataKey="Sales" title="Sales Performance" />
+				</div>
+				<div className="productTopRight">
+					<div className="productInfoTop">
+						<img src={product.img} alt="" className="productInfoImg" />
+						<span className="productName">{product.title}</span>
+					</div>
+					<div className="productInfoBottom">
+						<div className="productInfoItem">
+							<span className="productInfoKey">id:</span>
+							<span className="productInfoValue">{product._id}</span>
+						</div>
+						<div className="productInfoItem">
+							<span className="productInfoKey">sales:</span>
+							<span className="productInfoValue">5123</span>
+						</div>
+						<div className="productInfoItem">
+							<span className="productInfoKey">in stock:</span>
+							<span className="productInfoValue">{product.inStock}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="productBottom">
+				<form className="productForm">
+					<div className="productFormLeft">
+						<label>Product Name</label>
+						<input
+							onChange={(e) => setTitle(e.target.value)}
+							type="text"
+							placeholder={product.title}
+						/>
+						<label>Product Description</label>
+						<input
+							onChange={(e) => setDesc(e.target.value)}
+							type="text"
+							placeholder={product.desc}
+						/>
+						<label>Price</label>
+						<input
+							onChange={(e) => setPrice(e.target.value)}
+							type="text"
+							placeholder={product.price}
+						/>
+						<label>In Stock</label>
+						{product.inStock ? (
+							<select
+								name="inStock"
+								id="idStock"
+								onChange={(e) => setStock(e.target.value)}
+							>
+								<option defaultValue={product.inStock}>Yes</option>
+								<option value="false">No</option>
+							</select>
+						) : (
+							<select
+								name="inStock"
+								id="idStock"
+								onChange={(e) => setStock(e.target.value)}
+							>
+								<option defaultValue={product.inStock}>No</option>
+								<option value="true">Yes</option>
+							</select>
+						)}
+					</div>
+					<div className="productFormRight">
+						<div className="productUpload">
+							<img
+								src={product.img}
+								alt=""
+								className="productUploadImg"
+							/>
+							<label for="file">
+								<Publish />
+							</label>
+							<input
+								onChange={(e) => setFile(e.target.files[0])}
+								type="file"
+								id="file"
+								style={{ display: 'none' }}
+							/>
+						</div>
+						<button onClick={handleClick} className="productButton">
+							Update
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	);
 }

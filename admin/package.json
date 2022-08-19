@@ -1,16 +1,11 @@
 {
-  "name": "lamaadmin",
-  "version": "0.1.0",
+  "name": "kiviydmin",
   "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/data-grid": "^4.0.0-alpha.29",
-  "name": "new",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/data-grid": "^4.0.0-alpha.29",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
@@ -29,7 +24,6 @@
     "timeago.js": "^4.0.2",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.17.1",
-    "axios": "^0.21.1",
     "react-stripe-checkout": "^2.6.3",
     "styled-components": "^5.3.1",
     "web-vitals": "^1.0.1"

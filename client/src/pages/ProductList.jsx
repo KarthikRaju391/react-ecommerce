@@ -6,7 +6,8 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import { mobile } from '../responsive';
 import { useLocation } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Container = styled.div``;
 
@@ -56,9 +57,9 @@ const ProductList = () => {
     <Container>
       <Navbar />
       <Announcement />
-      <Title>{cat}</Title>
+      {cat ? <Title>{cat}</Title> : <Title>All Products</Title>}
       <FilterContainer>
-        {cat === 'fashion' && (
+        {cat && (
           <Filter>
             <FilterText>Filter Products:</FilterText>
             <Select name="color" onChange={handleFilters}>
@@ -89,7 +90,8 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products cat={cat} filters={filters} sort={sort} />
+      {cat && <Products cat={cat} filters={filters} sort={sort} />}
+      {!cat && <Products filters={filters} sort={sort} />}
       {/* <Newsletter /> */}
       <Footer />
     </Container>

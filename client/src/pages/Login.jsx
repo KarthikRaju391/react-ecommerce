@@ -12,8 +12,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://www.upwordstranslation.com/admin/uploads/produtos/95.jpg")
-
+    url('https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
       center;
   background-size: cover;
   display: flex;
@@ -24,13 +23,12 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
-
-  ${mobile({ width: "75%" })}
+  background-color: white;
+  ${mobile({ width: '75%' })}
 `;
 
 const Title = styled.h1`
   font-size: 24px;
-  font-weight: 1000;
   font-weight: 300;
 `;
 
@@ -44,8 +42,6 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
-  border-width : 5px;
-  border-radius : 15px;
 `;
 
 const Button = styled.button`
@@ -60,8 +56,6 @@ const Button = styled.button`
     color: green;
     cursor: not-allowed;
   }
-  border-width : 5px;
-  border-radius : 15px;
 `;
 
 const Links = styled.a`

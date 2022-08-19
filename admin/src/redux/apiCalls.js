@@ -112,13 +112,6 @@ export const getUsers = async (dispatch) => {
   }
 }
 
-export const deleteUser = async (id, dispatch) => { 
-    dispatch(getAllUsersSuccess(res.data));
-  } catch (error) {
-    dispatch(getAllUsersFailure());
-  }
-};
-
 export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUserStart());
   try {
